@@ -15,6 +15,7 @@ import {
   NotebookIcon,
   PencilRuler,
   Share2,
+  BriefcaseBusiness,
 } from "lucide-react";
 
 export default function DashboardLayout({ children }) {
@@ -48,6 +49,11 @@ export default function DashboardLayout({ children }) {
       name: "Social",
       href: "/dashboard/social",
       icon: Share2,
+    },
+    {
+      name: "Service",
+      href: "/dashboard/service",
+      icon: BriefcaseBusiness,
     },
   ];
 
@@ -204,7 +210,6 @@ export default function DashboardLayout({ children }) {
               >
                 <Menu className="w-5 h-5 text-accent" />
               </button>
-
             </div>
 
             <div className="flex items-center gap-2 lg:gap-3">
