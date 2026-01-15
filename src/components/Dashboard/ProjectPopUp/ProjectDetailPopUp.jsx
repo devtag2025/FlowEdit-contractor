@@ -82,7 +82,6 @@ function ProjectDetailPopUp({ isOpen, onClose, project }) {
       rounded-3xl
     "
   >
-    {/* Header */}
     <DialogHeader className="p-6 pb-4 border-b border-accent/10">
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1">
@@ -111,11 +110,10 @@ function ProjectDetailPopUp({ isOpen, onClose, project }) {
       </div>
     </DialogHeader>
 
-    {/* Body */}
     <div className="grid grid-cols-1 md:grid-cols-1 h-full">
-      {/* Left column */}
+    
       <div className="p-6 space-y-4 overflow-hidden">
-        {/* Video Preview */}
+    
         <div className="aspect-video bg-accent rounded-2xl flex items-center justify-center relative overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-br from-accent/80 to-accent/60" />
           <div className="relative z-10 text-center">
@@ -125,8 +123,6 @@ function ProjectDetailPopUp({ isOpen, onClose, project }) {
             <p className="text-white/80 text-sm">Video preview coming soon</p>
           </div>
         </div>
-
-        {/* Video Info */}
         <div className="flex items-center justify-between text-sm">
           <span className="text-accent/60">Video Project Version: 5</span>
           <div className="flex gap-2">
@@ -148,8 +144,6 @@ function ProjectDetailPopUp({ isOpen, onClose, project }) {
             </Button>
           </div>
         </div>
-
-        {/* Description */}
         <div className="bg-white rounded-xl p-4 border border-accent/10">
           <div className="flex items-center gap-2 mb-2">
             <CheckCircle className="w-4 h-4 text-accent" />
@@ -163,8 +157,6 @@ function ProjectDetailPopUp({ isOpen, onClose, project }) {
             the excitement of summer adventures.
           </p>
         </div>
-
-        {/* Progress */}
         <div>
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-semibold text-accent">Progress</span>
@@ -180,14 +172,10 @@ function ProjectDetailPopUp({ isOpen, onClose, project }) {
           </div>
         </div>
       </div>
-
-      {/* Right column */}
       <div className="p-6 flex flex-col h-full">
         <h4 className="text-sm font-semibold text-accent mb-4">
           Project Messages
         </h4>
-
-        {/* Messages (scroll) */}
         <div className="space-y-3 overflow-y-auto pr-2 flex-1 nice-scrollbar">
           {messages.map((msg) => (
             <div key={msg.id} className="flex gap-3">
