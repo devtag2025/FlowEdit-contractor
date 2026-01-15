@@ -104,7 +104,7 @@ const NotificationPage = () => {
         <Button
           key={btn.label}
           onClick={() => setActive(btn.label)}
-          className={`text-sm px-3 md:px-4 py-1 rounded-lg mr-1 md:mr-3 my-4 md:my-8  ${
+          className={`text-sm px-2 md:px-4 py-1 rounded-lg mr-1 md:mr-3 my-4 md:my-8  ${
             active === btn.label
               ? `bg-primary text-white`
               : `bg-tertiary text-accent`
@@ -114,7 +114,7 @@ const NotificationPage = () => {
         </Button>
       ))}
 
-      <section className="flex justify-between items-center border border-slate-400 b-2 rounded-2xl p-6">
+      <section className="flex justify-between items-center border border-slate-400 b-2 rounded-2xl p-4 md:p-6 gap-2">
         <div className="flex flex-col">
           <h3 className="text-accent font-semibold text-xl md:text-2xl mb-2">
             Important Updates
@@ -126,7 +126,7 @@ const NotificationPage = () => {
         </div>
 
         <Link href="/dashboard/service">
-          <ChevronRight className="flex items-center text-accent" size={40} />
+          <ChevronRight className="flex items-center text-accent w-8 h-8 md:w-10 md:h-10 " />
         </Link>
       </section>
 

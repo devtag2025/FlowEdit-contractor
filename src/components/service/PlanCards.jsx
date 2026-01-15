@@ -50,10 +50,10 @@ const PlanCards = () => {
   return (
     <>
       <section className="text-center my-10">
-        <h2 className="text-accent text-2xl font-semibold mb-2">
+        <h2 className="text-accent text-xl font-bold md:text-2xl md:font-semibold mb-2">
           Simple, transparent pricing
         </h2>
-        <p className="text-accent md:text-slate-600">
+        <p className="text-accent text-sm md:text-base md:text-slate-600">
           Choose the plan that best fits your content needs. All plans include
           professional editing and fast delivery.
         </p>

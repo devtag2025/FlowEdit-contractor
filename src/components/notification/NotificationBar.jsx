@@ -50,7 +50,7 @@ const NotificationBar = ({ notifications }) => {
       {notifications.map((notification) => (
         <div
           key={notification.id}
-          className="md:hidden bg-tertiary rounded-2xl p-5 flex flex-col"
+          className="md:hidden bg-tertiary rounded-2xl p-4 flex flex-col"
         >
           <span className="text-sm text-slate-600 whitespace-nowrap">
             {notification.time}
