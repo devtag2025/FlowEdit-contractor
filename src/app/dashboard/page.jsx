@@ -89,18 +89,32 @@ const Dashboard = () => {
 
             <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
               <div className="relative w-full overflow-hidden ">
-                <div className="flex gap-2 overflow-x-auto whitespace-nowrap no-scrollbar sm:flex-wrap sm:overflow-visible">
+               <div className="w-full">
+                <div className="lg:hidden w-full">
+                  <select
+                    value={activeFilter}
+                    onChange={(e) => setActiveFilter(e.target.value)}
+                    className="w-full h-10 rounded-xl border border-accent/20 bg-white px-4 text-sm font-medium text-accent focus:outline-none focus:ring-2 focus:ring-primary"
+                  >
+                    {filters.map((filter) => (
+                      <option key={filter} value={filter}>
+                        {filter}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="hidden lg:flex gap-2 flex-wrap">
                   {filters.map((filter) => (
                     <FilterButton
                       key={filter}
                       active={activeFilter === filter}
                       onClick={() => setActiveFilter(filter)}
-                      className="shrink-0"
                     >
                       {filter}
                     </FilterButton>
                   ))}
                 </div>
+              </div>
               </div>
 
               <div className="relative w-full lg:w-80 bg-white rounded-2xl">
