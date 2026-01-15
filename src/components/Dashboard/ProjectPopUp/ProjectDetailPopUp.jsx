@@ -4,7 +4,6 @@ import {
   Play,
   Edit2,
   Download,
-  Send,
   Paperclip,
   CheckCircle,
 } from "lucide-react";
