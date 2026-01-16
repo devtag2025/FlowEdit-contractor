@@ -5,23 +5,22 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import {
-  LayoutDashboard,
+  House,
   Settings,
   LogOut,
   Menu,
   X,
   Loader2,
   Bell,
-  NotebookIcon,
-  PencilRuler,
-  Share2,
-  BriefcaseBusiness,
+  DollarSign,
+  FileText,
+  FolderOpen,
 } from "lucide-react";
 
 export default function DashboardLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [unreadCount, setUnreadCount] = useState(3);
+  const [unreadCount, setUnreadCount] = useState(1);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -29,32 +28,27 @@ export default function DashboardLayout({ children }) {
     {
       name: "Dashboard",
       href: "/dashboard",
-      icon: LayoutDashboard,
+      icon: House,
     },
     {
-      name: "Projects",
-      href: "/dashboard/projects",
-      icon: NotebookIcon,
+      name: "Earnings",
+      href: "/dashboard/earnings",
+      icon: DollarSign,
     },
     {
-      name: "Notification",
+      name: "Contracts",
+      href: "/dashboard/contracts",
+      icon: FileText,
+    },
+    {
+      name: "Resources",
+      href: "/dashboard/resources",
+      icon: FolderOpen,
+    },
+    {
+      name: "Notifications",
       href: "/dashboard/notification",
       icon: Bell,
-    },
-    {
-      name: "Branding",
-      href: "/dashboard/branding",
-      icon: PencilRuler,
-    },
-    {
-      name: "Social",
-      href: "/dashboard/social",
-      icon: Share2,
-    },
-    {
-      name: "Service",
-      href: "/dashboard/service",
-      icon: BriefcaseBusiness,
     },
   ];
 
@@ -107,15 +101,15 @@ export default function DashboardLayout({ children }) {
               const active = isActive(item.href);
 
               return (
-            <Link
-  key={item.name}
-  href={item.href}
-  onClick={() => setIsSidebarOpen(false)}
-  className={`relative flex items-center gap-3 px-5 py-2 rounded-xl transition-all duration-300 group
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setIsSidebarOpen(false)}
+                  className={`relative flex items-center gap-3 px-5 py-2 rounded-xl transition-all duration-300 group
     ${
       active
         ? `
-          bg-linear-to-tr  from-purple-500/70 from-tertiary/90 to-secondary/50
+          bg-linear-to-tr from-tertiary/90 to-secondary/50
           text-white
           shadow-lg shadow-primary/25
         `
@@ -127,21 +121,21 @@ export default function DashboardLayout({ children }) {
         `
     }
   `}
-  aria-current={active ? "page" : undefined}
->
+                  aria-current={active ? "page" : undefined}
+                >
                   <div
-  className={`group flex h-7 w-7 items-center justify-center rounded-full transition-colors ${
-    active ? "bg-tertiary" : "bg-transparent"
-  }`}
->
-  <Icon
-    className={`w-5 h-5 transition-colors ${
-      active
-        ? "text-accent"
-        : "text-white/70 group-hover:text-tertiary/80"
-    }`}
-  />
-</div>
+                    className={`group flex h-7 w-7 items-center justify-center rounded-full transition-colors ${
+                      active ? "bg-tertiary" : "bg-transparent"
+                    }`}
+                  >
+                    <Icon
+                      className={`w-5 h-5 transition-colors ${
+                        active
+                          ? "text-accent"
+                          : "text-white/70 group-hover:text-tertiary/80"
+                      }`}
+                    />
+                  </div>
 
                   <span
                     className={`font-medium ${
@@ -152,7 +146,6 @@ export default function DashboardLayout({ children }) {
                   >
                     {item.name}
                   </span>
-                 
                 </Link>
               );
             })}
