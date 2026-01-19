@@ -13,7 +13,10 @@ const AccessTools = () => {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
             {Acesses.map((access) => (
-              <Card className="flex border-none rounded-lg md:rounded-3xl">
+              <Card
+                className="flex border-none rounded-lg md:rounded-3xl"
+                key={access.title}
+              >
                 <CardContent className="flex justify-between items-center ">
                   <h4 className="text-accent font-medium md:font-semibold text-base md:text-lg">
                     {access.title}
@@ -31,7 +34,10 @@ const AccessTools = () => {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
             {tools.map((tool) => (
-              <Card className="flex border-none rounded-lg md:rounded-3xl">
+              <Card
+                key={tool.title}
+                className="flex border-none rounded-lg md:rounded-3xl"
+              >
                 <CardContent className="flex justify-between items-center">
                   <h4 className="text-accent font-medium md:font-semibold text-base md:text-lg">
                     {tool.title}
