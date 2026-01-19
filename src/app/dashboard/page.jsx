@@ -42,46 +42,64 @@ const Dashboard = () => {
                 </h2>
 
                 <div className="w-full overflow-x-auto">
-                  <div className="min-w-[900px]">
-                    <div className="grid grid-cols-5 px-7 py-4 text-xs font-bold gap-x-8 uppercase text-slate-700">
-                      <span>Project</span>
-                      <span>Client</span>
-                      <span>Status</span>
-                      <span>Due Date</span>
-                      <span>Actions</span>
-                    </div>
+                  <table className="min-w-[900px] w-full border-collapse">
+                    <thead>
+                      <tr className="text-xs font-bold uppercase text-slate-700">
+                        <th scope="col" className="px-7 py-4 text-left">
+                          Project
+                        </th>
+                        <th scope="col" className="px-7 py-4 text-left">
+                          Client
+                        </th>
+                        <th scope="col" className="px-7 py-4 text-left">
+                          Status
+                        </th>
+                        <th scope="col" className="px-7 py-4 text-left">
+                          Due Date
+                        </th>
+                        <th scope="col" className="px-7 py-4 text-left">
+                          Actions
+                        </th>
+                      </tr>
+                    </thead>
 
-                    <div className="space-y-2">
+                    <tbody>
                       {projects.map((project) => (
-                        <div
+                        <tr
                           key={project.id}
-                          className="text-sm md:text-base grid grid-cols-5 gap-x-8 px-6 py-4 text-accent border-white border-t-2 hover:bg-gray-200"
+                          className="text-sm md:text-base text-accent border-t-2 border-white hover:bg-gray-200 transition"
                         >
-                          <span className="font-bold">{project.name}</span>
+                          <td className="px-6 py-4 font-bold">
+                            {project.name}
+                          </td>
 
-                          <span>{project.client}</span>
+                          <td className="px-6 py-4">{project.client}</td>
 
-                          <div className="flex items-center">
-                            <StatusBadge status={project.status} />
-                          </div>
+                          <td className="px-6 py-4">
+                            <div className="flex items-center">
+                              <StatusBadge status={project.status} />
+                            </div>
+                          </td>
 
-                          <span>{project.dueDate}</span>
+                          <td className="px-6 py-4">{project.dueDate}</td>
 
-                          <div className="flex gap-2">
-                            <ActionButton icon={Eye} label="Read" />
-                            <ActionButton
-                              icon={MessageSquare}
-                              label="Comments"
-                            />
-                            <ActionButton
-                              icon={EllipsisVertical}
-                              label="options"
-                            />
-                          </div>
-                        </div>
+                          <td className="px-6 py-4">
+                            <div className="flex gap-2">
+                              <ActionButton icon={Eye} label="Read" />
+                              <ActionButton
+                                icon={MessageSquare}
+                                label="Comments"
+                              />
+                              <ActionButton
+                                icon={EllipsisVertical}
+                                label="Options"
+                              />
+                            </div>
+                          </td>
+                        </tr>
                       ))}
-                    </div>
-                  </div>
+                    </tbody>
+                  </table>
                 </div>
               </CardContent>
             </Card>
