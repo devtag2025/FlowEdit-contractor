@@ -1,56 +1,9 @@
 import { Download } from "lucide-react";
 import { Button } from "../common/Button";
 import { Card, CardContent } from "../ui/card";
+import { earningSummary, payouts } from "@/utils/earnings";
 
 const Payout = () => {
-  const earningSummary = [
-    {
-      title: "This Month's Earnings",
-      earning: "$8,450",
-    },
-    {
-      title: "Year-to-Date",
-      earning: "$96,200",
-    },
-    {
-      title: "Total Paid Projects",
-      earning: "127",
-    },
-  ];
-  const payouts = [
-    {
-      project: "Social Media Campaign",
-      client: "Global Brands",
-      status: "Paid",
-      amount: "$ 2,500",
-      date: "Jan 8, 2025",
-      bonus: "+ $75 Quality Bonus",
-    },
-    {
-      project: "Product Launch Video",
-      client: "Acme Corp",
-      status: "Pending",
-      amount: "$ 3,200",
-      date: "-",
-      bonus: "-",
-    },
-    {
-      project: "Brand Guidelines",
-      client: "TechStart Inc",
-      status: "Paid",
-      amount: "$ 1,800",
-      date: "Dec 28, 2024",
-      bonus: "+ $50 Speed Bonus",
-    },
-    {
-      project: "Website Redesign",
-      client: "Startup Labs",
-      status: "Pending",
-      amount: "$ 4,500",
-      date: "-",
-      bonus: "+ $100 Exceptional Work Bonus",
-    },
-  ];
   return (
     <Card className="bg-tertiary pt-8 md:rounded-3xl">
       <CardContent className="flex flex-col gap-6">
@@ -60,7 +13,10 @@ const Payout = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6">
           {earningSummary.map((earning) => (
-            <Card className="bg-white border-0 md:rounded-3xl">
+            <Card
+              className="bg-white border-0 md:rounded-3xl"
+              key={earning.title}
+            >
               <CardContent className="flex flex-col gap-6">
                 <p className="uppercase text-slate-700  text-xs md:text-sm font-semibold">
                   {earning.title}
@@ -74,25 +30,28 @@ const Payout = () => {
         </div>
 
         <div className="w-full overflow-x-auto">
-          <div className="min-w-225">
-            <div className="grid grid-cols-6 px-6 py-4 text-xs font-semibold uppercase text-slate-700">
-              <span>Project</span>
-              <span>Client</span>
-              <span>Status</span>
-              <span>Amount</span>
-              <span>Date Paid</span>
-              <span>Bonuses Earned</span>
-            </div>
+          <table className="min-w-[900px] w-full border-collapse">
+            <thead>
+              <tr className="text-xs font-semibold uppercase text-slate-700">
+                <th className="px-6 py-5 text-left">Project</th>
+                <th className="px-6 py-5 text-left">Client</th>
+                <th className="px-6 py-5 text-left">Status</th>
+                <th className="px-6 py-5 text-left">Amount</th>
+                <th className="px-6 py-5 text-left">Date Paid</th>
+                <th className="px-6 py-5 text-left">Bonuses Earned</th>
+              </tr>
+            </thead>
 
-            <div className="space-y-2">
-              {payouts.map((payout, idx) => (
-                <div
-                  key={idx}
-                  className="text-sm md:text-base grid grid-cols-6 gap-x-6 px-6 py-4 font-bold text-accent border-white border-t-2 hover:bg-gray-200"
+            <tbody>
+              {payouts.map((payout) => (
+                <tr
+                  key={payout.id}
+                  className="text-sm md:text-base font-bold text-accent border-t-2 border-white hover:bg-gray-200 transition"
                 >
-                  <span>{payout.project}</span>
-                  <span>{payout.client}</span>
-                  <span>
+                  <td className="px-6 py-5">{payout.project}</td>
+                  <td className="px-6 py-5">{payout.client}</td>
+
+                  <td className="px-6 py-5">
                     <span
                       className={`inline-flex px-4 py-1.5 text-xs font-bold rounded-full ${
                         payout.status === "Paid"
@@ -102,14 +61,15 @@ const Payout = () => {
                     >
                       {payout.status}
                     </span>
-                  </span>
-                  <span>{payout.amount}</span>
-                  <span>{payout.date}</span>
-                  <span className="text-green-600">{payout.bonus}</span>
-                </div>
+                  </td>
+
+                  <td className="px-6 py-5">{payout.amount}</td>
+                  <td className="px-6 py-5">{payout.date}</td>
+                  <td className="px-6 py-5 text-green-600">{payout.bonus}</td>
+                </tr>
               ))}
-            </div>
-          </div>
+            </tbody>
+          </table>
         </div>
 
         <div className="flex justify-center md:justify-end mt-3">
