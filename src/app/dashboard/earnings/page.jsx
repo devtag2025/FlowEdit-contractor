@@ -6,7 +6,7 @@ import WalletSection from "@/components/earnings/WalletSection";
 import { useState } from "react";
 
 export default function Earnings() {
-  const [activeTab, setActiveTab] = useState("wallet");
+  const [activeTab, setActiveTab] = useState("payout");
   return (
     <>
       <main className="min-h-screen bg-secondary px-3 md:px-8 py-5 pb-4">
