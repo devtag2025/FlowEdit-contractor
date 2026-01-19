@@ -1,61 +1,54 @@
- import { Activity, Clock, CheckCircle} from 'lucide-react';
- export const stats = [
-    {
-      icon: Activity,
-      title: 'Active Projects',
-      percentage: '80%',
-      subtitle: '12 of 15 projects',
-      trend: '+12%'
-    },
-    {
-      icon: Clock,
-      title: 'Videos in Review',
-      percentage: '67%',
-      subtitle: '8 of 12 in review',
-      trend: '+12%'
-    },
-    {
-      icon: CheckCircle,
-      title: 'Completed Projects',
-      percentage: '86%',
-      subtitle: '24 of 28 projects',
-      trend: '+12%'
-    }
-  ];
+export const stats = [
+  {
+    title: "Active Projects",
+    time: "This Month",
+    percentage: "80%",
+    subtitle: "12 of 15 active",
+    trend: "+12% this month",
+  },
+  {
+    title: "Videos in Review",
+    time: "This Week",
+    percentage: "67%",
+    subtitle: "8 of 12 in review",
+    trend: "+4% this week",
+  },
+  {
+    title: "Earnings",
+    time: "Last Month",
+    percentage: "$5,435.54",
+    subtitle: "Total earnings",
+    trend: "+0.8% than last month",
+  },
+];
 
- export const filters = ['All', 'Submitted', 'Processing', 'Review', 'Error', 'Complete'];
-
- export const projects = [
-    {
-      id: 1,
-      name: 'Summer Campaign Promo',
-      platform: 'Instagram',
-      status: 'Review',
-      lastUpdated: '10/25/2025',
-      progress: 80
-    },
-    {
-      id: 2,
-      name: 'Product Unboxing v2',
-      platform: 'Linkedin',
-      status: 'Processing',
-      lastUpdated: '10/25/2025',
-      progress: 45
-    },
-    {
-      id: 3,
-      name: 'Testimonial Compilation',
-      platform: 'Tiktok',
-      status: 'Complete',
-      lastUpdated: '10/25/2025',
-      progress: 100
-    },
-    {
-      id: 4,
-      name: 'Halloween Special',
-      platform: 'Internal',
-      status: 'Submitted',
-      lastUpdated: '10/25/2025',
-      progress: 30
-    }
-  ];
+export const projects = [
+  {
+    id: 1,
+    name: "Product Launch Video",
+    client: "Acme Corp",
+    status: "In Progress",
+    dueDate: "Jan 15, 2025",
+  },
+  {
+    id: 2,
+    name: "Brand refresh Assets",
+    client: "TechStart Inc",
+    status: "Review",
+    dueDate: "Jan 12, 2025",
+  },
+  {
+    id: 3,
+    name: "Social Media Campaign",
+    client: "Global Brands",
+    status: "Completed",
+    dueDate: "Jan 8, 2025",
+  },
+  {
+    id: 4,
+    name: "Website Redesign",
+    client: "Startup Labs",
+    status: "In Progress",
+    dueDate: "Jan 20, 2025",
+  },
+];
