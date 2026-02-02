@@ -4,8 +4,13 @@ import { stats, projects } from "@/utils/dashboard";
 import StatCard from "@/components/Dashboard/StatCard";
 import { StatusBadge, ActionButton } from "@/components/Dashboard/StatusBadge";
 import { Card, CardContent } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
+  const router = useRouter();
+  const handleProjectView = (project) => {
+    router.push(`/dashboard/projects/${project.id}`);
+  };
   return (
     <div>
       <div className="min-h-screen bg-secondary p-4 md:p-8">
@@ -68,7 +73,11 @@ const Dashboard = () => {
                           <span>{project.dueDate}</span>
 
                           <div className="flex gap-2">
-                            <ActionButton icon={Eye} label="Read" />
+                            <ActionButton
+                              icon={Eye}
+                              label="Read"
+                              onClick={() => handleProjectView(project)}
+                            />
                             <ActionButton
                               icon={MessageSquare}
                               label="Comments"

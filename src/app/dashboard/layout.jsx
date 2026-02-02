@@ -15,6 +15,7 @@ import {
   DollarSign,
   FileText,
   FolderOpen,
+  NotebookIcon,
 } from "lucide-react";
 
 export default function DashboardLayout({ children }) {
