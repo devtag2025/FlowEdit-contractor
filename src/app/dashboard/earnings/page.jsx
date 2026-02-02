@@ -12,8 +12,8 @@ export default function Earnings() {
       <main className="min-h-screen bg-secondary px-3 md:px-8 py-5 pb-4">
         <TabNavigation activeTab={activeTab} onChange={setActiveTab} />
 
-        {activeTab === "wallet" && <WalletSection />}
         {activeTab === "payout" && <Payout />}
+        {activeTab === "wallet" && <WalletSection />}
       </main>
     </>
   );
