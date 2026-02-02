@@ -5,14 +5,24 @@ import StatCard from "@/components/Dashboard/StatCard";
 import { StatusBadge, ActionButton } from "@/components/Dashboard/StatusBadge";
 import { Card, CardContent } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
+import Loader from "@/components/common/Loader";
+import { useState } from "react";
 
 const Dashboard = () => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
   const handleProjectView = (project) => {
+    setLoading(true);
     router.push(`/dashboard/projects/${project.id}`);
   };
   return (
     <div>
+      {loading && (
+        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center">
+          <Loader />
+        </div>
+      )}
       <div className="min-h-screen bg-secondary p-4 md:p-8">
         <div className="max-w-7xl mx-auto space-y-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -56,11 +66,11 @@ const Dashboard = () => {
                       <span>Actions</span>
                     </div>
 
-                    <div className="space-y-2">
+                    <div>
                       {projects.map((project) => (
                         <div
                           key={project.id}
-                          className="text-sm md:text-base grid grid-cols-5 gap-x-8 px-6 py-4 text-accent border-white border-t-2 hover:bg-gray-200"
+                          className="text-sm md:text-base grid grid-cols-5 gap-x-8 px-6 py-4 text-accent border-white border-t-2 hover:bg-gray-300"
                         >
                           <span className="font-bold">{project.name}</span>
 
