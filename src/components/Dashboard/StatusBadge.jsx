@@ -3,12 +3,10 @@
 export const StatusBadge = ({ status }) => {
   const styles = {
     Review: "text-primary border border-primary",
-    "In Progress": "bg-primary text-white",
+    Processing: "bg-primary text-white",
     Completed: "bg-green-100 text-green-700",
     Error: "bg-danger/10 text-danger border-danger",
   };
-
-  console.log(status);
   return (
     <div
       className={`w-fit rounded-full px-4 py-1 text-sm font-medium ${styles[status]}`}

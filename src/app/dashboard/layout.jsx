@@ -246,8 +246,7 @@ export default function DashboardLayout({ children }) {
             <div className="flex items-center gap-2 lg:gap-3">
               <Link href="/dashboard/notification">
                 <button
-                  className="relative sm:flex bg-tertiary p-2.5 lg:p-3 rounded-full 
-  hover:bg-purple-500/20 transition-colors active:scale-95"
+                  className="relative sm:flex bg-tertiary p-2.5 lg:p-3 rounded-full hover:bg-purple-500/20 transition-colors active:scale-95 cursor-pointer"
                   aria-label="Notifications"
                 >
                   <Bell className="text-accent w-4 h-4 lg:w-5 lg:h-5" />
@@ -265,28 +264,21 @@ export default function DashboardLayout({ children }) {
               </Link>
 
               <Link href="/dashboard/profile">
-                <button
-                  className="sm:flex bg-tertiary p-2.5 lg:p-3 rounded-full hover:bg-purple-500/20 transition-colors active:scale-95"
-                  aria-label="Settings"
-                >
-                  <Settings className="text-accent w-4 h-4 lg:w-5 lg:h-5" />
-                </button>
-              </Link>
+                <div className="relative flex items-center gap-2 px-1 py-1 lg:px-3 lg:py-2 rounded-full lg:rounded-full bg-tertiary hover:border-purple-400/70 hover:shadow-[0_0_20px_-5px_rgba(168,85,247,0.7)] transition-all duration-300 active:scale-95">
+                  <div className="relative w-8 h-8 lg:w-10 lg:h-10 rounded-full overflow-hidden bg-linear-to-br from-purple-600 to-purple-400 shrink-0">
+                    <Image
+                      src="https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg"
+                      alt="Avatar"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
 
-              <div className="relative flex items-center gap-2 px-1 py-1 lg:px-3 lg:py-2 rounded-full lg:rounded-full bg-tertiary hover:border-purple-400/70 hover:shadow-[0_0_20px_-5px_rgba(168,85,247,0.7)] transition-all duration-300 active:scale-95">
-                <div className="relative w-8 h-8 lg:w-10 lg:h-10 rounded-full overflow-hidden bg-linear-to-br from-purple-600 to-purple-400 shrink-0">
-                  <Image
-                    src="https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg"
-                    alt="Avatar"
-                    fill
-                    className="object-cover"
-                  />
+                  <span className="hidden lg:block text-sm lg:text-base font-semibold text-accent">
+                    John Doe
+                  </span>
                 </div>
-
-                <span className="hidden lg:block text-sm lg:text-base font-semibold text-accent">
-                  John Doe
-                </span>
-              </div>
+              </Link>
             </div>
           </div>
         </header>
