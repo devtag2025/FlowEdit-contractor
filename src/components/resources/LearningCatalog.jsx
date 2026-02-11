@@ -1,90 +1,82 @@
 "use client";
 
 import { useState } from "react";
-import { PlayCircle, CheckCircle } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import EmptyCatalog from "./EmptyCatalog";
+import CatalogSidebar from "./CatalogSidebar";
+import { catalogData } from "@/utils/catalog";
+import VideoCard from "../common/VideoCard";
 
-const lessons = [
+const tabs = [
   {
-    id: 1,
-    title: "Navigating the Dashboard",
-    duration: "3:45",
-    status: "Not Started",
+    label: "Getting Started",
+    value: "started",
   },
   {
-    id: 2,
-    title: "Setting Up Your Profile",
-    duration: "4:20",
-    status: "In Progress",
+    label: "Editing Standards",
+    value: "editing",
   },
   {
-    id: 3,
-    title: "Understanding Editing Tasks",
-    duration: "5:30",
-    status: "Completed",
+    label: "File Naming & Exports",
+    value: "naming",
+  },
+  {
+    label: "Revisions & Feedback",
+    value: "revision",
   },
 ];
 
 const LearningCatalog = () => {
-  const [activeLesson, setActiveLesson] = useState(lessons[0]);
+  const [activeTab, setActiveTab] = useState("started");
+  const [selectedCard, setSelectedCard] = useState(null);
+
+  const cards = catalogData[activeTab];
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      {/* Left Section */}
-      <div className="lg:col-span-2 space-y-4">
-        <h2 className="text-xl font-semibold text-accent">Learning Catalog</h2>
+    <div className="space-y-4">
+      <h2 className="text-2xl font-bold text-accent">Learning Catalog</h2>
 
-        {lessons.map((lesson) => (
-          <Card
-            key={lesson.id}
-            className="bg-tertiary cursor-pointer hover:shadow-md transition"
-            onClick={() => setActiveLesson(lesson)}
-          >
-            <CardContent className="p-4 flex items-center justify-between">
-              <div>
-                <h3 className="font-medium">{lesson.title}</h3>
-                <p className="text-xs text-muted-foreground">
-                  {lesson.duration}
-                </p>
-              </div>
+      <div className="lg:grid lg:grid-cols-12 pb-4 bg-tertiary/80 rounded-2xl">
+        <div className="lg:col-span-8 px-5 py-3">
+          <div className="flex justify-between py-2 border-b border-accent/30">
+            {tabs.map((tab) => (
+              <button
+                key={tab.value}
+                onClick={() => {
+                  setActiveTab(tab.value);
+                  setSelectedCard(null);
+                }}
+                className={`relative text-sm md:text-base font-medium cursor-pointer pb-2 transition-all duration-300 ${
+                  activeTab === tab.value
+                    ? "text-accent font-bold border-b-4 border-primary rounded"
+                    : "text-accent/70 border-b-2 border-transparent"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
 
-              {lesson.status === "Completed" ? (
-                <CheckCircle className="text-green-500" />
-              ) : (
-                <span className="text-xs text-muted-foreground">
-                  {lesson.status}
-                </span>
-              )}
-            </CardContent>
-          </Card>
-        ))}
+          <div className="grid grid-cols-1 p-2 mt-2">
+            <h2>{}</h2>
+            {cards.map((card) => (
+              <VideoCard
+                key={card.id}
+                {...card}
+                onClick={() => setSelectedCard(card)}
+              />
+            ))}
+          </div>
+        </div>
+
+        {selectedCard ? (
+          <CatalogSidebar
+            card={selectedCard}
+            onClose={() => setSelectedCard(null)}
+          />
+        ) : (
+          <EmptyCatalog />
+        )}
       </div>
-
-      {/* Right Preview */}
-      <Card className="bg-tertiary">
-        <CardContent className="p-4 space-y-4">
-          <h3 className="font-semibold">{activeLesson.title}</h3>
-
-          <div className="h-[260px] bg-secondary rounded-lg flex items-center justify-center">
-            <PlayCircle className="w-14 h-14 text-muted-foreground" />
-          </div>
-
-          <div className="space-y-2 text-sm">
-            <p className="font-medium">Lesson Checklist</p>
-            <ul className="list-disc pl-4 text-muted-foreground space-y-1">
-              <li>Access the dashboard</li>
-              <li>Review resources</li>
-              <li>Customize profile settings</li>
-            </ul>
-          </div>
-
-          <div className="flex justify-end gap-2">
-            <Button variant="secondary">Close</Button>
-            <Button>Mark as Complete</Button>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 };
