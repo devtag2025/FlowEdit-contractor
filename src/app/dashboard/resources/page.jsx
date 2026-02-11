@@ -12,7 +12,7 @@ const Resources = () => {
   const currentStep = 4;
   const [activeTab, setActiveTab] = useState("access");
   return (
-    <main className="min-h-screen bg-secondary px-3 md:px-8 py-5 pb-4 space-y-8">
+    <main className="min-h-screen bg-secondary px-4 py-5 pb-4 space-y-8">
       <Card className="bg-tertiary">
         <CardContent>
           <h1 className="text-accent font-semibold md:font-bold text-xl md:text-3xl mb-2">
