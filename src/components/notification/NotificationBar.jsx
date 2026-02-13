@@ -6,7 +6,11 @@ import {
 } from "lucide-react";
 import React from "react";
 
-const NotificationBar = ({ notifications }) => {
+const NotificationBar = ({
+  notifications,
+  setSelectedNotification,
+  setMobileDetailOpen,
+}) => {
   const typeToIcon = {
     project: Clock,
     billing: DollarSign,
@@ -16,62 +20,50 @@ const NotificationBar = ({ notifications }) => {
 
   return (
     <div className="space-y-4 mt-4">
-      {/* Desktop */}
       {notifications.map((notification) => {
         const Icon = typeToIcon[notification.type] || MessageCircle;
         return (
           <div
             key={notification.id}
-            className="hidden bg-white rounded-2xl p-5 md:flex justify-between hover:bg-gray-300"
+            className="hidden bg-white rounded-xl p-3 lg:flex justify-between hover:bg-gray-200 cursor-pointer"
+            onClick={() => setSelectedNotification(notification)}
           >
-            <div className="flex items-center justify-center gap-4">
-              <div className="bg-primary p-3 rounded-full text-white">
-                <Icon className="w-6 h6" />
+            <div className="flex items-center justify-center gap-3">
+              <div className="bg-primary p-3 rounded-full">
+                <Icon size={18} />
               </div>
 
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col">
                 <h4 className="text-accent font-bold text-lg mb-1">
                   {notification.title}
                 </h4>
-                <p className="text-slate-700">{notification.description}</p>
+                <p className="text-slate-600 text-sm">
+                  {notification.description}
+                </p>
               </div>
             </div>
-
-            <span className="text-sm font-semibold text-slate-700 whitespace-nowrap">
-              {notification.time}
-            </span>
           </div>
         );
       })}
 
-      {/* Mobile */}
-      {notifications.map((notification) => {
-        const Icon = typeToIcon[notification.type] || MessageCircle;
-        return (
-          <div
-            key={notification.id}
-            className="md:hidden bg-tertiary rounded-lg p-3 flex flex-col gap-2"
-          >
-            <div className="flex items-center justify-between">
-              <div className="bg-primary p-2 rounded-full text-white">
-                <Icon className="w-4 h-4" />
-              </div>
-              <span className="text-xs text-slate-600 whitespace-nowrap">
-                {notification.time}
-              </span>
-            </div>
-
-            <div>
-              <h4 className="text-accent font-bold mb-1">
-                {notification.title}
-              </h4>
-              <p className="text-slate-600 text-sm">
-                {notification.description}
-              </p>
-            </div>
-          </div>
-        );
-      })}
+      {notifications.map((notification) => (
+        <div
+          key={notification.id}
+          className="lg:hidden bg-white rounded-xl p-4 flex flex-col hover:bg-gray-200 cursor-pointer"
+          onClick={() => {
+            setSelectedNotification(notification);
+            setMobileDetailOpen(true);
+          }}
+        >
+          <span className="text-xs text-slate-600 whitespace-nowrap">
+            {notification.time}
+          </span>
+          <h4 className="text-accent font-semibold text-lg mb-1">
+            {notification.title}
+          </h4>
+          <p className="text-slate-600 text-sm">{notification.description}</p>
+        </div>
+      ))}
     </div>
   );
 };
