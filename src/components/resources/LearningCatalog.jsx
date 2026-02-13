@@ -57,7 +57,6 @@ const LearningCatalog = () => {
           </div>
 
           <div className="grid grid-cols-1 p-2 mt-2">
-            <h2>{}</h2>
             {cards.map((card) => (
               <VideoCard
                 key={card.id}
