@@ -19,13 +19,13 @@ const NotificationBar = ({
   };
 
   return (
-    <div className="space-y-4 mt-4">
+    <div className="space-y-3 mt-4">
       {notifications.map((notification) => {
         const Icon = typeToIcon[notification.type] || MessageCircle;
         return (
           <div
             key={notification.id}
-            className="hidden bg-white rounded-xl p-3 lg:flex justify-between hover:bg-gray-200 cursor-pointer"
+            className="hidden bg-white rounded-lg p-3 lg:flex justify-between hover:bg-accent/10 cursor-pointer"
             onClick={() => setSelectedNotification(notification)}
           >
             <div className="flex items-center justify-center gap-3">
