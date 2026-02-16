@@ -9,7 +9,6 @@ import { onboardingSteps } from "@/utils/resource";
 import React, { useState } from "react";
 
 const Resources = () => {
-  const currentStep = 4;
   const [activeTab, setActiveTab] = useState("access");
   return (
     <main className="min-h-screen bg-secondary px-4 py-5 pb-4 space-y-8">
@@ -18,7 +17,7 @@ const Resources = () => {
           <h1 className="text-accent font-semibold md:font-bold text-xl md:text-3xl mb-2">
             Onboarding Progress
           </h1>
-          <OnboardingSteps steps={onboardingSteps} currentStep={currentStep} />
+          <OnboardingSteps steps={onboardingSteps} />
         </CardContent>
       </Card>
 

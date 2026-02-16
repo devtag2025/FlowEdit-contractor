@@ -1,10 +1,31 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { workflowSteps } from "@/utils/workflowSteps";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
+const getInitials = (name) =>
+  name
+    .split(" ")
+    .map((word) => word.slice(0, 1))
+    .join("")
+    .toUpperCase();
 
 const ProjectWorkflow = ({ currentStep }) => {
+  const [clickedRole, setClickedRole] = useState(null);
+
+  const handleClick = (stepId, roleName, isPrimary, isActive) => {
+    if (isActive && isPrimary) {
+      setClickedRole({ stepId, roleName });
+    }
+  };
+
   return (
-    <div className="w-full py-4 md:py-8">
+    <TooltipProvider delayDuration={200}>
       <div className="flex items-start w-full gap-6 overflow-x-auto scrollbar-hide">
         {workflowSteps.map((step) => {
           const isActive = currentStep === step.id;
@@ -25,33 +46,55 @@ const ProjectWorkflow = ({ currentStep }) => {
               </div>
 
               <div className="flex justify-center gap-2 mt-6 w-full flex-nowrap">
-                {step.roles.map((role, idx) => (
-                  <div key={idx} className="flex flex-col items-center gap-3">
-                    <div
-                      className={`w-12 h-12 rounded-full flex items-center justify-center  text-xs md:text-sm text-white font-bold transition-all duration-300 opacity-40 ${
-                        role.color
-                      } ${
-                        isActive && role.role.includes("Primary")
-                          ? "ring-[6px] ring-gray-500/50 opacity-60"
-                          : ""
-                      }`}
-                    >
-                      {role.name}
-                    </div>
+                {step.roles.map((role, idx) => {
+                  const isPrimary = role.role.includes("Primary");
+                  const isClicked =
+                    clickedRole?.stepId === step.id &&
+                    clickedRole?.roleName === role.name;
 
-                    <span
-                      className={`text-[9px] md:font-semibold uppercase text-center leading-tight max-w-[80px] text-slate-400`}
-                    >
-                      {role.role}
-                    </span>
-                  </div>
-                ))}
+                  return (
+                    <div key={idx} className="flex flex-col items-center gap-3">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <div
+                            onClick={() =>
+                              handleClick(
+                                step.id,
+                                role.name,
+                                isPrimary,
+                                isActive,
+                              )
+                            }
+                            className={`w-12 h-12 rounded-full flex items-center justify-center text-xs md:text-sm text-white font-bold transition-all duration-300 opacity-40 ${role.color} ${isActive && role.role.includes("Primary") ? "ring-4 ring-gray-500/50 opacity-60 cursor-pointer" : ""} ${isClicked ? "opacity-100 ring-4 scale-110" : ""} `}
+                            style={
+                              isClicked ? { "--tw-ring-color": role.color } : {}
+                            }
+                          >
+                            {getInitials(role.name)}
+                          </div>
+                        </TooltipTrigger>
+
+                        <TooltipContent
+                          side="top"
+                          align="center"
+                          className={`max-w-xs text-xs ${isActive && role.role.includes("Primary") ? "opacity-100" : "opacity-30"}`}
+                        >
+                          {role.name} - {role.role}
+                        </TooltipContent>
+                      </Tooltip>
+
+                      <span className="text-[9px] md:font-semibold uppercase text-center leading-tight max-w-20 text-slate-400">
+                        {role.role}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           );
         })}
       </div>
-    </div>
+    </TooltipProvider>
   );
 };
 
