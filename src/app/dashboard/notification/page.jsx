@@ -102,20 +102,20 @@ const NotificationPage = () => {
 
   return (
     <main className="min-h-screen bg-secondary px-3 md:px-8 py-5 pb-10 ">
-      <h1 className="text-accent font-semibold text-2xl md:text-3xl">
+      <h1 className="text-accent font-semibold text-2xl md:text-3xl pb-3">
         Notifications
       </h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
+      <div className="bg-tertiary/90 grid grid-cols-1 lg:grid-cols-12 gap-3 p-3 rounded-xl">
         <div className="lg:col-span-6">
           {btns.map((btn) => (
             <button
               key={btn.label}
               onClick={() => setActive(btn.label)}
-              className={`text-sm px-2 md:px-3 py-1 rounded-lg mr-2 mt-4 cursor-pointer  ${
+              className={`text-sm px-2 shadow-md md:px-4 py-1 rounded-lg mr-2 mt-4 cursor-pointer  ${
                 active === btn.label
                   ? `bg-primary text-white`
-                  : `bg-tertiary text-accent hover:bg-gray-300`
+                  : `bg-white text-accent hover:bg-gray-300`
               }`}
             >
               {btn.label}
